@@ -5,7 +5,8 @@ function About() {
         About Me
       </h2>
       <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed text-center">
-        I'm <span className="font-semibold text-primary">Mostafa Kamal</span>, a
+        <p>I&apos;m learning React.</p>
+        <span className="font-semibold text-primary">Mostafa Kamal</span>, a
         passionate <span className="font-semibold">Full-Stack Developer</span>
         <br />
         who loves crafting clean, modern, and scalable web applications.

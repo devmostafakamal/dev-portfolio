@@ -136,8 +136,8 @@ export default function SkillsPage() {
           My <span className="text-indigo-500">Skills</span>
         </h2>
         <p className="mt-3 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-          I've worked with a range of technologies in the web development world,
-          from back-end to front-end and project management.
+          I&apos;ev worked with a range of technologies in the web development
+          world, from back-end to front-end and project management.
         </p>
       </div>
 
