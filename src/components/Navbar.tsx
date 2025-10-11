@@ -7,25 +7,21 @@ import {
   SunIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
 
+  // Scroll show/hide navbar
   useEffect(() => {
     let lastScrollY = 0;
     const handleScroll = () => {
       if (window.scrollY > lastScrollY && window.scrollY > 50) {
-        // scrolling down
-        setScrolled(false); // hide
+        setScrolled(false); // hide navbar on scroll down
       } else if (window.scrollY < lastScrollY) {
-        // scrolling up
-        setScrolled(true); // show
+        setScrolled(true); // show on scroll up
       } else if (window.scrollY <= 50) {
         setScrolled(true); // top of page
       }
@@ -38,12 +34,22 @@ function Navbar() {
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
   const menuItems = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/projects", label: "Projects" },
-    { href: "/blog", label: "Blogs" },
-    { href: "/contact", label: "Contact" },
+    { href: "#home", label: "Home" },
+    { href: "#about", label: "About" },
+    { href: "#skills", label: "Skills" },
+    { href: "#projects", label: "Projects" },
+    { href: "#contact", label: "Contact" },
   ];
+
+  // Smooth scroll function
+  const handleScrollTo = (e: React.MouseEvent, href: string) => {
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <nav
@@ -55,26 +61,26 @@ function Navbar() {
       <div className="container max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="text-xl font-bold text-primary">
+          <a
+            href="#home"
+            onClick={(e) => handleScrollTo(e, "#home")}
+            className="text-xl font-bold text-primary cursor-pointer"
+          >
             Devfolio&trade;
-          </Link>
+          </a>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
-            {menuItems.map((item) => {
-              const isActive = pathname === item.href;
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`hover:text-primary transition-colors font-medium ${
-                    isActive ? "text-primary" : ""
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
+            {menuItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={(e) => handleScrollTo(e, item.href)}
+                className="hover:text-primary transition-colors font-medium cursor-pointer"
+              >
+                {item.label}
+              </a>
+            ))}
 
             {/* Theme Toggle */}
             <button
@@ -112,21 +118,16 @@ function Navbar() {
           rounded-xl bg-white/70 dark:bg-gray-900/70 shadow-2xl animate-slideDown"
         >
           <div className="flex flex-col p-4 space-y-4">
-            {menuItems.map((item) => {
-              const isActive = pathname === item.href;
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`block py-2 px-3 rounded-md font-medium hover:bg-gray-100/30 dark:hover:bg-gray-800/30 transition-colors ${
-                    isActive ? "text-primary" : ""
-                  }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
+            {menuItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={(e) => handleScrollTo(e, item.href)}
+                className="block py-2 px-3 rounded-md font-medium hover:bg-gray-100/30 dark:hover:bg-gray-800/30 transition-colors"
+              >
+                {item.label}
+              </a>
+            ))}
             <button
               onClick={toggleTheme}
               className="p-2 rounded-lg transition-all duration-300 hover:bg-gray-100/30 dark:hover:bg-gray-800/30 text-gray-800 dark:text-white"

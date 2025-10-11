@@ -1,5 +1,11 @@
+import Projects from "@/components/Projects";
+
 function Project() {
-  return <div>project page</div>;
+  return (
+    <div>
+      <Projects />
+    </div>
+  );
 }
 
 export default Project;
