@@ -1,11 +1,12 @@
 "use client";
 
 import { FiMail, FiPhone, FiMapPin } from "react-icons/fi";
-import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
-import { useState } from "react";
+import { FaArrowUp, FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
 export default function ContactPage() {
+  const [showScroll, setShowScroll] = useState<boolean>(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -42,6 +43,15 @@ export default function ContactPage() {
       alert("⚠️ Something went wrong! Please try again.");
     }
   };
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 200) setShowScroll(true);
+      else setShowScroll(false);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <section
@@ -172,6 +182,15 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
+      {showScroll && (
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-500 to-blue-500 text-white p-3 rounded-full shadow-lg hover:opacity-90 transition transform hover:-translate-y-1 focus:outline-none"
+          aria-label="Scroll to top"
+        >
+          <FaArrowUp className="w-5 h-5" />
+        </button>
+      )}
     </section>
   );
 }
