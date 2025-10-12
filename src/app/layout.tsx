@@ -32,7 +32,6 @@ export default function RootLayout({
         <ThemeProvider>
           <Navbar />
           <main className="pt-16 min-h-screen">{children}</main>
-          <footer>footer</footer>
         </ThemeProvider>
       </body>
     </html>

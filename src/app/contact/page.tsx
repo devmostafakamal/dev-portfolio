@@ -3,6 +3,7 @@
 import { FiMail, FiPhone, FiMapPin } from "react-icons/fi";
 import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -18,10 +19,28 @@ export default function ContactPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Message sent!");
-    setFormData({ name: "", email: "", subject: "", message: "" });
+
+    try {
+      const res = await fetch("/api/sendEmail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        Swal.fire("Success!", "Your message has been sent!", "success");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        Swal.fire("Error!", "Failed to send message.", "error");
+      }
+    } catch (error) {
+      console.error("Email send error:", error);
+      alert("⚠️ Something went wrong! Please try again.");
+    }
   };
 
   return (
