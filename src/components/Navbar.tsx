@@ -95,6 +95,14 @@ function Navbar() {
                 <MoonIcon className="w-5 h-5" />
               )}
             </button>
+            <a
+              href="https://drive.google.com/file/d/1klDXZyubb_WnqRvta7cgZtP5__V3EDym/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 rounded-sm bg-blue-600 text-white inline-block"
+            >
+              Resume
+            </a>
           </div>
 
           {/* Mobile Toggle Button */}
