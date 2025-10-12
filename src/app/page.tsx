@@ -5,7 +5,7 @@ import Skills from "./skills/page";
 import ContactPage from "./contact/page";
 export default function Home() {
   return (
-    <div className="max-w-[1280px] mx-auto px-4">
+    <div className="max-w-[1280px] mx-auto px-4 ">
       <div id="home">
         <Hero />
       </div>

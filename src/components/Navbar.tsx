@@ -53,7 +53,7 @@ function Navbar() {
 
   return (
     <nav
-      className={`w-full fixed top-0 left-1/2 transform -translate-x-1/2 z-50
+      className={`w-full fixed top-0 left-1/2 transform -translate-x-1/2 z-50 
         rounded-xl transition-all duration-700 ease-in-out
         backdrop-blur-md bg-white/60 dark:bg-gray-900/60
         ${scrolled ? "shadow-2xl animate-slideDown" : ""}`}

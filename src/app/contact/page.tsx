@@ -25,20 +25,23 @@ export default function ContactPage() {
   };
 
   return (
-    <section id="contact" className="min-h-screen px-4 py-20  dark:bg-gray-900">
+    <section
+      id="contact"
+      className="min-h-screen px-4 py-16 sm:py-20 dark:bg-gray-900"
+    >
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-4 text-gray-900 dark:text-white">
+        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4 text-gray-900 dark:text-white">
           Get In <span className="text-blue-500">Touch</span>
         </h2>
-        <p className="text-center text-gray-600 dark:text-gray-300 mb-12">
+        <p className="text-center text-gray-600 dark:text-gray-300 mb-12 px-2 sm:px-0">
           Have a project in mind or just want to connect? Feel free to reach out
           to me for collaborations or questions.
         </p>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Left: Contact Information */}
-          <div className="bg-gradient-to-r from-purple-400 to-blue-500 p-1 rounded-xl shadow-lg">
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-8 h-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+          {/* Left: Contact Info */}
+          <div className="bg-gradient-to-r from-purple-400 to-blue-500 p-1 rounded-xl shadow-lg w-full">
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 sm:p-8 flex flex-col h-full">
               <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
                 Contact Information
               </h3>
@@ -47,31 +50,31 @@ export default function ContactPage() {
                 just to say hi!
               </p>
 
-              <ul className="space-y-4">
-                <li className="flex items-center gap-3 text-gray-800 dark:text-gray-200">
-                  <FiMail className="w-6 h-6 text-purple-500" />
-                  <span>Email</span>:
+              <ul className="space-y-3 sm:space-y-4">
+                <li className="flex items-center gap-2 sm:gap-3 text-gray-800 dark:text-gray-200 flex-wrap">
+                  <FiMail className="w-5 h-5 sm:w-6 sm:h-6 text-purple-500" />
+                  <span>Email:</span>
                   <a
-                    href="dev.mostafa2025@gmail.com"
-                    className="ml-1 text-purple-500"
+                    href="mailto:dev.mostafa2025@gmail.com"
+                    className="ml-1 text-purple-500 break-words"
                   >
                     dev.mostafa2025@gmail.com
                   </a>
                 </li>
-                <li className="flex items-center gap-3 text-gray-800 dark:text-gray-200">
-                  <FiPhone className="w-6 h-6 text-purple-500" />
-                  <span>Phone</span>:
+                <li className="flex items-center gap-2 sm:gap-3 text-gray-800 dark:text-gray-200">
+                  <FiPhone className="w-5 h-5 sm:w-6 sm:h-6 text-purple-500" />
+                  <span>Phone:</span>
                   <a href="tel:+8801614797956" className="ml-1 text-purple-500">
                     +8801614797956
                   </a>
                 </li>
-                <li className="flex items-center gap-3 text-gray-800 dark:text-gray-200">
-                  <FiMapPin className="w-6 h-6 text-purple-500" />
-                  <span>Location</span>: Dinajpur, Bangladesh
+                <li className="flex items-center gap-2 sm:gap-3 text-gray-800 dark:text-gray-200">
+                  <FiMapPin className="w-5 h-5 sm:w-6 sm:h-6 text-purple-500" />
+                  <span>Location:</span> Dinajpur, Bangladesh
                 </li>
               </ul>
 
-              <div className="mt-6 flex items-center gap-4">
+              <div className="mt-4 sm:mt-6 flex flex-wrap gap-3">
                 <a
                   href="https://github.com/devmostafakamal"
                   className="p-2 rounded-full bg-purple-100 text-purple-600 hover:bg-purple-200 transition"
@@ -95,68 +98,33 @@ export default function ContactPage() {
           </div>
 
           {/* Right: Contact Form */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg">
-            <h3 className="text-xl font-bold mb-6 text-gray-900 dark:text-white">
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 sm:p-8 shadow-lg w-full">
+            <h3 className="text-xl font-bold mb-4 sm:mb-6 text-gray-900 dark:text-white">
               Send me a message
             </h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="relative">
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder=" "
-                  className="peer w-full p-4 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
-                />
-                <label
-                  htmlFor="name"
-                  className="absolute left-4 top-4 text-gray-500 dark:text-gray-400 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-sm peer-focus:text-blue-500"
-                >
-                  Name
-                </label>
-              </div>
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+              {["name", "email", "subject"].map((field) => (
+                <div key={field} className="relative">
+                  <input
+                    type={field === "email" ? "email" : "text"}
+                    id={field}
+                    name={field}
+                    value={formData[field as keyof typeof formData]}
+                    onChange={handleChange}
+                    placeholder=" "
+                    className="peer w-full p-3 sm:p-4 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required
+                  />
+                  <label
+                    htmlFor={field}
+                    className="absolute left-3 sm:left-4 top-3 sm:top-4 text-gray-500 dark:text-gray-400 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-sm peer-focus:text-blue-500"
+                  >
+                    {field.charAt(0).toUpperCase() + field.slice(1)}
+                  </label>
+                </div>
+              ))}
 
-              <div className="relative">
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder=" "
-                  className="peer w-full p-4 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
-                />
-                <label
-                  htmlFor="email"
-                  className="absolute left-4 top-4 text-gray-500 dark:text-gray-400 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-sm peer-focus:text-blue-500"
-                >
-                  Email
-                </label>
-              </div>
-
-              <div className="relative">
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  placeholder=" "
-                  className="peer w-full p-4 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
-                />
-                <label
-                  htmlFor="subject"
-                  className="absolute left-4 top-4 text-gray-500 dark:text-gray-400 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-sm peer-focus:text-blue-500"
-                >
-                  Subject
-                </label>
-              </div>
-
+              {/* Message */}
               <div className="relative">
                 <textarea
                   id="message"
@@ -164,12 +132,12 @@ export default function ContactPage() {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder=" "
-                  className="peer w-full p-4 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 h-32 resize-none"
+                  className="peer w-full p-3 sm:p-4 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 h-28 sm:h-32 resize-none"
                   required
                 />
                 <label
                   htmlFor="message"
-                  className="absolute left-4 top-4 text-gray-500 dark:text-gray-400 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-sm peer-focus:text-blue-500"
+                  className="absolute left-3 sm:left-4 top-3 sm:top-4 text-gray-500 dark:text-gray-400 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-sm peer-focus:text-blue-500"
                 >
                   Message
                 </label>
@@ -177,7 +145,7 @@ export default function ContactPage() {
 
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-purple-500 to-blue-500 text-white p-3 rounded-lg hover:opacity-90 transition flex items-center justify-center gap-2"
+                className="w-full bg-gradient-to-r from-purple-500 to-blue-500 text-white p-3 sm:p-3.5 rounded-lg hover:opacity-90 transition flex items-center justify-center gap-2"
               >
                 Send Message
               </button>

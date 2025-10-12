@@ -1,11 +1,18 @@
+"use client";
 function About() {
+  const scrollToContact = () => {
+    const projectsSection = document.querySelector("#contact");
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
   return (
     <div className="flex items-center justify-center flex-col mt-40">
       <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-gray-800 dark:text-white">
         About Me
       </h2>
       <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed text-center">
-        <p>I&apos;m learning React.</p>
+        <span>I&apos;m learning React.</span>
         <span className="font-semibold text-primary">Mostafa Kamal</span>, a
         passionate <span className="font-semibold">Full-Stack Developer</span>
         <br />
@@ -17,7 +24,10 @@ function About() {
         </span>
         .
       </p>
-      <button className="px-6 mt-6 py-3 border border-primary text-primary rounded-xl font-medium hover:bg-blue-700 hover:text-white transition">
+      <button
+        onClick={scrollToContact}
+        className="px-6 mt-6 py-3 border border-primary text-primary rounded-xl font-medium hover:bg-blue-700 hover:text-white transition"
+      >
         Contact Me
       </button>
     </div>

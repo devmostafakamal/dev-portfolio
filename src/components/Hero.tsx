@@ -8,8 +8,20 @@ import { MdOutlineMarkEmailUnread } from "react-icons/md";
 import { SlSocialLinkedin } from "react-icons/sl";
 
 function Hero() {
+  const scrollToProjects = () => {
+    const projectsSection = document.querySelector("#projects");
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+  const scrollToContact = () => {
+    const projectsSection = document.querySelector("#contact");
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
   return (
-    <section className="flex flex-col-reverse md:flex-row items-center justify-between gap-10 mt-60 transition-colors duration-500">
+    <section className="flex flex-col-reverse md:flex-row items-center justify-between gap-10 pt-60 transition-colors duration-500 ">
       {/* ===== Left Content ===== */}
       <div className="flex-1 text-center md:text-left space-y-5">
         <h2 className="text-lg uppercase tracking-widest text-blue-600 font-semibold">
@@ -43,10 +55,16 @@ function Hero() {
 
         {/* Buttons */}
         <div className="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
-          <button className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium shadow-md transition-all duration-300">
+          <button
+            onClick={scrollToContact}
+            className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium shadow-md transition-all duration-300"
+          >
             Get In Touch
           </button>
-          <button className="px-6 py-2.5 border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white rounded-lg font-medium transition-all duration-300">
+          <button
+            onClick={scrollToProjects}
+            className="px-6 py-2.5 border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white rounded-lg font-medium transition-all duration-300"
+          >
             View Projects
           </button>
         </div>
